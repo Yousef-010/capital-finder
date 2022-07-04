@@ -8,7 +8,6 @@ class Handler(BaseHTTPRequestHandler):
         url_components = parse.urlsplit(self.path)
         query_string_list = parse.parse_qsl(url_components.query)
         dictionary = dict(query_string_list)
-        # base_url = "https://restcountries.com/v2/capital/"
         base_url = "https://restcountries.com/v2/"
         capital = dictionary.get("capital")
         country = dictionary.get("country")
@@ -17,14 +16,14 @@ class Handler(BaseHTTPRequestHandler):
             response = requests.get(base_url + "name/" + country)
             data = response.json()
             capital_response = data[0]["capital"]
-            message = f"the capital of {country} is {capital_response}"
+            message = f"The capital of {country} is {capital_response}"
 
         elif capital:
             response = requests.get(base_url + "capital/" + capital)
             data = response.json()
             capitals = data[0]["capital"]
             country_name = data[0]["name"]
-            message = f"{capitals[0]} is the capital of {country_name}"
+            message = f"{capitals} is the capital of {country_name}"
 
         else:
             message = "Please write a city name to get info about it"
