@@ -24,7 +24,7 @@ class Handler(BaseHTTPRequestHandler):
             response = requests.get(base_url + "name/" + country)
             data = response.json()
             capital_response = data[0]["capital"]
-            message = f"{capital_response[0]} is the capital of {country}"
+            message = f"{capital_response} is the capital of {country}"
         else:
             message = "Please write a city name to get info about it"
 
