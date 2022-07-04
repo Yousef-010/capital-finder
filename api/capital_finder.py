@@ -3,13 +3,13 @@ from urllib import parse
 import requests
 
 
-class handler(BaseHTTPRequestHandler):
+class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         url_components = parse.urlsplit(self.path)
         query_string_list = parse.parse_qsl(url_components.query)
         dictionary = dict(query_string_list)
-        # base_url = "https://restcountries.com/v3.1/capital/"
-        base_url = "https://restcountries.com/v3.1/"
+        # base_url = "https://restcountries.com/v2/capital/"
+        base_url = "https://restcountries.com/v2/"
         capital = dictionary.get("capital")
         country = dictionary.get("country")
 
