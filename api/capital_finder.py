@@ -14,17 +14,18 @@ class Handler(BaseHTTPRequestHandler):
         country = dictionary.get("country")
 
         if capital:
+            response = requests.get(base_url + "name/" + country)
+            data = response.json()
+            capital_response = data[0]["capital"]
+            message = f"{capital_response} is the capital of {country}"
+
+        elif country:
             response = requests.get(base_url + "capital/" + capital)
             data = response.json()
             capitals = data[0]["capital"]
             country_name = data[0]["name"]["common"]
             message = f"the capital of {country_name} is {capitals[0]}"
 
-        elif country:
-            response = requests.get(base_url + "name/" + country)
-            data = response.json()
-            capital_response = data[0]["capital"]
-            message = f"{capital_response} is the capital of {country}"
         else:
             message = "Please write a city name to get info about it"
 
